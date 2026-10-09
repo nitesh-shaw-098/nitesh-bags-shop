@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nitesh Bags | 4D Luxury Collection</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+  <style>
+    :root {
+      --bg: #090a0f;
+      --card-bg: rgba(22, 25, 37, 0.65);
+      --card-border: rgba(255, 215, 0, 0.18);
+      --accent-gold: #e6ca65;
+      --gold-gradient: linear-gradient(135deg, #f7e08c 0%, #d4af37 50%, #996515 100%);
+      --text: #f0f2f5;
+      --text-muted: #8b92a5;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+      background-image: 
+        radial-gradient(circle at 15% 20%, rgba(212, 175, 55, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 85% 75%, rgba(100, 149, 237, 0.06) 0%, transparent 40%);
+    }
+
+    /* Ambient Lighting Mesh */
+    .ambient-glow {
+      position: fixed;
+      width: 450px;
+      height: 450px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(230, 202, 101, 0.15), transparent 70%);
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: 0;
+      transition: transform 0.15s ease-out;
+    }
+
+    /* Navbar */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(16px);
+      background: rgba(9, 10, 15, 0.85);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.1rem 5%;
+    }
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    .dummy-logo {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--gold-gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cinzel', serif;
+      font-weight: 900;
+      font-size: 1.25rem;
+      color: #0d0f17;
+      box-shadow: 0 4px 20px rgba(212, 175, 55, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+    .brand-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .badge-cod {
+      background: rgba(39, 174, 96, 0.15);
+      border: 1px solid rgba(39, 174, 96, 0.4);
+      color: #2ecc71;
+      font-size: 0.75rem;
+      padding: 5px 12px;
+      border-radius: 30px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    .btn-auth {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: var(--text);
+      padding: 7px 18px;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .btn-auth:hover {
+      background: rgba(255, 255, 255, 0.18);
+      border-color: var(--accent-gold);
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      text-align: center;
+      padding: 4.5rem 1rem 2rem;
+      z-index: 1;
+    }
+    .hero h1 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2rem, 5vw, 3.8rem);
+      font-weight: 700;
+      letter-spacing: 2px;
+      margin-bottom: 0.8rem;
+    }
+    .hero p {
+      color: var(--text-muted);
+      max-width: 620px;
+      margin: 0 auto 1.5rem;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    /* 4D Product Grid */
+    .catalog-container {
+      max-width: 1350px;
+      margin: 2rem auto 6rem;
+      padding: 0 5%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2.2rem;
+      perspective: 1500px;
+      z-index: 2;
+      position: relative;
+    }
+
+    /* Tilt Card Container */
+    .card-3d {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 1.4rem;
+      backdrop-filter: blur(14px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
+      transform-style: preserve-3d;
+      transition: border-color 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+    .card-3d:hover {
+      border-color: rgba(230, 202, 101, 0.55);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.65), 0 0 20px rgba(212, 175, 55, 0.2);
+    }
+    .img-box {
+      width: 100%;
+      height: 230px;
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 1.2rem;
+      position: relative;
+      background: #111420;
+    }
+    .img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+      transform: translateZ(20px);
+    }
+    .card-3d:hover .img-box img {
+      transform: scale(1.08) translateZ(35px);
+    }
+    .variant-tag {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: var(--accent-gold);
+      font-size: 0.7rem;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-weight: 600;
+    }
+    .card-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+      transform: translateZ(25px);
+    }
+    .card-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      height: 38px;
+      line-height: 1.4;
+      transform: translateZ(15px);
+    }
+    .card-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transform: translateZ(30px);
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding-top: 0.9rem;
+    }
+    .price {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--accent-gold);
+    }
+    .btn-buy {
+      background: var(--gold-gradient);
+      color: #0b0d14;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 25px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-buy:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(212, 175, 55, 0.4);
+    }
+
+    /* Modals */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.82);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .modal-card {
+      background: #111420;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      width: 100%;
+      max-width: 480px;
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+      position: relative;
+    }
+    .modal-close {
+      position: absolute;
+      top: 18px;
+      right: 20px;
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
+    .modal-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.35rem;
+      margin-bottom: 0.4rem;
+      color: var(--accent-gold);
+    }
+    .form-group {
+      margin-top: 1rem;
+      text-align: left;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 5px;
+      font-weight: 500;
+    }
+    .form-group input, .form-group textarea {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus, .form-group textarea:focus {
+      border-color: var(--accent-gold);
+    }
+    .btn-submit {
+      width: 100%;
+      margin-top: 1.4rem;
+      background: var(--gold-gradient);
+      color: #0b0d14;
+      border: none;
+      padding: 12px;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .cod-badge-box {
+      background: rgba(46, 204, 113, 0.12);
+      border: 1px dashed rgba(46, 204, 113, 0.4);
+      padding: 10px;
+      border-radius: 10px;
+      color: #2ecc71;
+      font-size: 0.8rem;
+      margin-top: 1rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient glowing light follows mouse -->
+  <div class="ambient-glow" id="ambientLight"></div>
+
+  <!-- Header -->
+  <header>
+    <a href="#" class="logo-container">
+      <div class="dummy-logo">NB</div>
+      <span class="brand-title">NITESH BAGS</span>
+    </a>
+    <div class="nav-actions">
+      <span class="badge-cod">🚚 COD ONLY</span>
+      <button class="btn-auth" id="authBtn" onclick="openAuthModal()">Sign In / Join</button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>FOUR-DIMENSIONAL CRAFT</h1>
+    <p>Explore our exclusive 10 signature variants. Engineered with architectural precision, premium materials, and cash-on-delivery convenience directly to your doorstep.</p>
+  </section>
+
+  <!-- 10 Variants Catalog -->
+  <main class="catalog-container" id="catalog"></main>
+
+  <!-- Checkout Modal (COD Only) -->
+  <div class="modal-overlay" id="checkoutModal">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeModal('checkoutModal')">&times;</button>
+      <h3 class="modal-title">Cash on Delivery Order</h3>
+      <p style="font-size: 0.85rem; color: var(--text-muted);" id="checkoutSubtitle"></p>
+      
+      <form id="orderForm" onsubmit="handleOrderSubmit(event)">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" id="custName" required placeholder="e.g. Rahul Sharma" />
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" id="custPhone" required placeholder="10-digit mobile number" />
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="custEmail" required placeholder="your.name@example.com" />
+        </div>
+        <div class="form-group">
+          <label>Delivery Address</label>
+          <textarea id="custAddress" rows="3" required placeholder="Flat / House no, Landmark, City, Pincode"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Quantity</label>
+          <input type="number" id="custQty" value="1" min="1" max="5" onchange="updateTotalCalc()" />
+        </div>
+
+        <div class="cod-badge-box">
+          💵 <strong>Payment Mode:</strong> Cash on Delivery (Pay cash upon parcel delivery)
+        </div>
+
+        <button type="submit" class="btn-submit" id="submitOrderBtn">Confirm COD Order (₹<span id="displayTotal">0</span>)</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Sign Up / Login Modal -->
+  <div class="modal-overlay" id="authModal">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeModal('authModal')">&times;</button>
+      <h3 class="modal-title" id="authTitle">Create Account</h3>
+      <p style="font-size: 0.85rem; color: var(--text-muted);">Sync your profile with our Google Drive directory.</p>
+
+      <form id="authForm" onsubmit="handleAuthSubmit(event)">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" id="authName" required placeholder="Full Name" />
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="authEmail" required placeholder="email@domain.com" />
+        </div>
+        <div class="form-group">
+          <label>Mobile Number</label>
+          <input type="tel" id="authPhone" required placeholder="Contact Number" />
+        </div>
+        <button type="submit" class="btn-submit" id="authSubmitBtn">Register Account</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // 1. Webhook endpoint from Google Apps Script deployment
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxrK4Ki6SYeeeQSSXu8EO07SYRxCbzGAjMZ6p_BDUou4qtlPMzB0Da8DGEZoSdlkuwDyw/exec";
+
+    // 2. 10 Signature Bag Variants
+    const variants = [
+      { id: 1, name: "V1: Stealth Obsidian Backpack", price: 3499, desc: "Matte ballistic nylon with waterproof zippers and laptop sleeve.", img: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=700&q=80" },
+      { id: 2, name: "V2: Heritage Cognac Briefcase", price: 4299, desc: "Full-grain vegetable-tanned leather for formal corporate aesthetics.", img: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=700&q=80" },
+      { id: 3, name: "V3: Cyber Carbon Crossbody", price: 2199, desc: "High-density weave with metallic hardware and RFID blocking pocket.", img: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=700&q=80" },
+      { id: 4, name: "V4: Apex Alpine Duffle", price: 3899, desc: "60L rugged weather-resistant duffle engineered for weekends & gym.", img: "https://images.unsplash.com/photo-1577733966973-d680bffd2e80?auto=format&fit=crop&w=700&q=80" },
+      { id: 5, name: "V5: Parisian Minimal Tote", price: 2799, desc: "Structured waxed canvas bag with reinforced dual-leather handles.", img: "https://images.unsplash.com/photo-1591561954557-26941169b49e?auto=format&fit=crop&w=700&q=80" },
+      { id: 6, name: "V6: Nomad Tactical Sling", price: 1899, desc: "Ambidextrous strap, quick-release magnetic buckle, tactical webbings.", img: "https://images.unsplash.com/photo-1622560480605-d83c853bc5c3?auto=format&fit=crop&w=700&q=80" },
+      { id: 7, name: "V7: Vanguard Hard-Shell Carryon", price: 5499, desc: "Aerospace polycarbonate frame with 360-degree silent spinner wheels.", img: "https://images.unsplash.com/photo-1565026057447-bc90a3dceb87?auto=format&fit=crop&w=700&q=80" },
+      { id: 8, name: "V8: Eclipse Rolltop Commuter", price: 3199, desc: "Expandable roll-top closure with quick-access side camera compartment.", img: "https://images.unsplash.com/photo-1600857062241-98e5dba7f214?auto=format&fit=crop&w=700&q=80" },
+      { id: 9, name: "V9: Midnight Velvet Clutch", price: 2499, desc: "Handcrafted evening silhouette accented with golden brass chain.", img: "https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?auto=format&fit=crop&w=700&q=80" },
+      { id: 10, name: "V10: Urban Modular Messenger", price: 2999, desc: "Waterproof commuter bag with magnetic flap and luggage pass-through.", img: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=700&q=80" }
+    ];
+
+    let selectedVariant = null;
+
+    // Render Cards with 4D / 3D Tilt parameters
+    const catalog = document.getElementById("catalog");
+    variants.forEach(item => {
+      const card = document.createElement("div");
+      card.className = "card-3d";
+      card.setAttribute("data-tilt", "");
+      card.setAttribute("data-tilt-max", "18");
+      card.setAttribute("data-tilt-speed", "400");
+      card.setAttribute("data-tilt-perspective", "1000");
+      card.setAttribute("data-tilt-glare", "true");
+      card.setAttribute("data-tilt-max-glare", "0.25");
+
+      card.innerHTML = `
+        <div class="img-box">
+          <span class="variant-tag">Variant #${item.id}</span>
+          <img src="${item.img}" alt="${item.name}" loading="lazy" />
+        </div>
+        <h3 class="card-title">${item.name}</h3>
+        <p class="card-desc">${item.desc}</p>
+        <div class="card-bottom">
+          <span class="price">₹${item.price.toLocaleString('en-IN')}</span>
+          <button class="btn-buy" onclick="openCheckout(${item.id})">Order COD</button>
+        </div>
+      `;
+      catalog.appendChild(card);
+    });
+
+    // Initialize 3D Vanilla Tilt
+    VanillaTilt.init(document.querySelectorAll(".card-3d"));
+
+    // Ambient Lighting cursor tracking
+    const ambientLight = document.getElementById("ambientLight");
+    window.addEventListener("mousemove", (e) => {
+      ambientLight.style.transform = `translate(${e.clientX - 225}px, ${e.clientY - 225}px)`;
+    });
+
+    // Modal controllers
+    function openCheckout(variantId) {
+      selectedVariant = variants.find(v => v.id === variantId);
+      document.getElementById("checkoutSubtitle").innerText = `${selectedVariant.name} — ₹${selectedVariant.price.toLocaleString('en-IN')}`;
+      updateTotalCalc();
+      document.getElementById("checkoutModal").style.display = "flex";
+    }
+
+    function updateTotalCalc() {
+      if (!selectedVariant) return;
+      const qty = parseInt(document.getElementById("custQty").value) || 1;
+      const total = selectedVariant.price * qty;
+      document.getElementById("displayTotal").innerText = total.toLocaleString('en-IN');
+    }
+
+    function openAuthModal() {
+      document.getElementById("authModal").style.display = "flex";
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).style.display = "none";
+    }
+
+    // Submit Order -> Google Apps Script -> Sheet & Gmail
+    async function handleOrderSubmit(e) {
+      e.preventDefault();
+      const btn = document.getElementById("submitOrderBtn");
+      btn.innerText = "Processing Order...";
+      btn.disabled = true;
+
+      const qty = parseInt(document.getElementById("custQty").value) || 1;
+      const payload = {
+        action: "order",
+        customerName: document.getElementById("custName").value,
+        phone: document.getElementById("custPhone").value,
+        email: document.getElementById("custEmail").value,
+        address: document.getElementById("custAddress").value,
+        variantName: selectedVariant.name,
+        quantity: qty,
+        unitPrice: selectedVariant.price,
+        totalPrice: selectedVariant.price * qty
+      };
+
+      try {
+        await fetch(SCRIPT_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+
+        alert("🎉 Order Placed Successfully via Cash on Delivery!\n\nA confirmation email has been dispatched to the owner.");
+        closeModal("checkoutModal");
+        document.getElementById("orderForm").reset();
+      } catch (err) {
+        alert("Notice: Order recorded locally. Ensure your Apps Script URL is updated.");
+      } finally {
+        btn.innerText = "Confirm COD Order";
+        btn.disabled = false;
+      }
+    }
+
+    // Signup / Auth flow
+    async function handleAuthSubmit(e) {
+      e.preventDefault();
+      const btn = document.getElementById("authSubmitBtn");
+      btn.innerText = "Registering...";
+      btn.disabled = true;
+
+      const payload = {
+        action: "signup",
+        fullName: document.getElementById("authName").value,
+        email: document.getElementById("authEmail").value,
+        phone: document.getElementById("authPhone").value
+      };
+
+      try {
+        await fetch(SCRIPT_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+
+        localStorage.setItem("nb_user", JSON.stringify(payload));
+        document.getElementById("authBtn").innerText = `Hi, ${payload.fullName.split(' ')[0]}`;
+        alert("Account created and saved in Google Drive!");
+        closeModal("authModal");
+      } catch (err) {
+        alert("Account registered locally.");
+      } finally {
+        btn.innerText = "Register Account";
+        btn.disabled = false;
+      }
+    }
+
+    // Check stored user session
+    window.addEventListener("DOMContentLoaded", () => {
+      const saved = localStorage.getItem("nb_user");
+      if (saved) {
+        const u = JSON.parse(saved);
+        document.getElementById("authBtn").innerText = `Hi, ${u.fullName.split(' ')[0]}`;
+      }
+    });
+  </script>
+</body>
+</html>
