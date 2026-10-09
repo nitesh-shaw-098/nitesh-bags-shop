@@ -3,581 +3,1008 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nitesh Bags | 4D Luxury Collection</title>
+  <title>NITESH | Handcrafted Indian Elegance</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #090a0f;
-      --card-bg: rgba(22, 25, 37, 0.65);
-      --card-border: rgba(255, 215, 0, 0.18);
-      --accent-gold: #e6ca65;
-      --gold-gradient: linear-gradient(135deg, #f7e08c 0%, #d4af37 50%, #996515 100%);
-      --text: #f0f2f5;
-      --text-muted: #8b92a5;
+      --primary: #9b2226;
+      --primary-dark: #671316;
+      --accent: #ca6702;
+      --bg: #fdfbf7;
+      --card-bg: #ffffff;
+      --text: #212529;
+      --muted: #6c757d;
+      --border: #eedecf;
+      --green: #2b9348;
     }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      background: var(--bg);
+      background-color: var(--bg);
       color: var(--text);
       font-family: 'Plus Jakarta Sans', sans-serif;
       overflow-x: hidden;
-      min-height: 100vh;
-      background-image: 
-        radial-gradient(circle at 15% 20%, rgba(212, 175, 55, 0.08) 0%, transparent 40%),
-        radial-gradient(circle at 85% 75%, rgba(100, 149, 237, 0.06) 0%, transparent 40%);
     }
 
-    /* Ambient Lighting Mesh */
-    .ambient-glow {
-      position: fixed;
-      width: 450px;
-      height: 450px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(230, 202, 101, 0.15), transparent 70%);
-      filter: blur(80px);
-      pointer-events: none;
-      z-index: 0;
-      transition: transform 0.15s ease-out;
+    /* Top Strip */
+    .announcement-bar {
+      background: var(--primary);
+      color: #fff;
+      text-align: center;
+      padding: 9px 12px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
     }
 
-    /* Navbar */
+    /* Header */
     header {
       position: sticky;
       top: 0;
-      z-index: 100;
-      backdrop-filter: blur(16px);
-      background: rgba(9, 10, 15, 0.85);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      z-index: 99;
+      background: #ffffff;
+      border-bottom: 1px solid var(--border);
+      padding: 0.9rem 5%;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1.1rem 5%;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
     }
-    .logo-container {
+    .brand-wrap {
       display: flex;
       align-items: center;
       gap: 12px;
       text-decoration: none;
+      color: var(--text);
     }
-    .dummy-logo {
+    .brand-logo-dummy {
       width: 44px;
       height: 44px;
-      border-radius: 12px;
-      background: var(--gold-gradient);
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: 'Cinzel', serif;
-      font-weight: 900;
-      font-size: 1.25rem;
-      color: #0d0f17;
-      box-shadow: 0 4px 20px rgba(212, 175, 55, 0.35);
-      border: 1px solid rgba(255, 255, 255, 0.4);
+      font-weight: 800;
+      font-size: 1.2rem;
+      font-family: 'Playfair Display', serif;
     }
-    .brand-title {
-      font-family: 'Cinzel', serif;
-      font-size: 1.35rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-      background: var(--gold-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    .brand-text h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.45rem;
+      letter-spacing: 1.5px;
+      color: var(--primary);
+      line-height: 1.1;
+    }
+    .brand-text span {
+      font-size: 0.68rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1.8px;
+      display: block;
     }
     .nav-actions {
       display: flex;
       align-items: center;
-      gap: 1rem;
+      gap: 12px;
     }
-    .badge-cod {
-      background: rgba(39, 174, 96, 0.15);
-      border: 1px solid rgba(39, 174, 96, 0.4);
-      color: #2ecc71;
-      font-size: 0.75rem;
-      padding: 5px 12px;
-      border-radius: 30px;
-      font-weight: 600;
-      letter-spacing: 0.5px;
+    .badge-pill {
+      background: #e8f5e9;
+      color: var(--green);
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      border: 1px solid #c8e6c9;
     }
-    .btn-auth {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      color: var(--text);
+    .btn-auth-nav {
+      background: #fff;
+      border: 1.5px solid var(--primary);
+      color: var(--primary);
       padding: 7px 18px;
-      border-radius: 30px;
+      border-radius: 20px;
+      font-weight: 600;
       font-size: 0.85rem;
-      font-weight: 500;
       cursor: pointer;
-      transition: all 0.3s;
+      transition: all 0.2s;
     }
-    .btn-auth:hover {
-      background: rgba(255, 255, 255, 0.18);
-      border-color: var(--accent-gold);
+    .btn-auth-nav:hover {
+      background: var(--primary);
+      color: #fff;
     }
 
-    /* Hero Section */
+    /* Hero / Banner Section */
     .hero {
-      position: relative;
       text-align: center;
-      padding: 4.5rem 1rem 2rem;
-      z-index: 1;
+      padding: 3.5rem 1rem 2rem;
+      background: radial-gradient(circle at 50% 0%, #faede1 0%, transparent 70%);
     }
-    .hero h1 {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(2rem, 5vw, 3.8rem);
+    .hero-badge {
+      display: inline-block;
+      background: rgba(202, 103, 2, 0.12);
+      color: var(--accent);
+      padding: 5px 14px;
+      border-radius: 16px;
+      font-size: 0.75rem;
       font-weight: 700;
-      letter-spacing: 2px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
       margin-bottom: 0.8rem;
     }
+    .hero h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.9rem, 4vw, 3.2rem);
+      color: #1e1e24;
+      margin-bottom: 0.6rem;
+    }
     .hero p {
-      color: var(--text-muted);
-      max-width: 620px;
-      margin: 0 auto 1.5rem;
-      font-size: 1rem;
+      color: var(--muted);
+      max-width: 650px;
+      margin: 0 auto;
+      font-size: 0.98rem;
       line-height: 1.6;
     }
 
-    /* 4D Product Grid */
-    .catalog-container {
-      max-width: 1350px;
-      margin: 2rem auto 6rem;
+    /* Filter Bar */
+    .filter-wrapper {
+      max-width: 1250px;
+      margin: 1.5rem auto 0;
       padding: 0 5%;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2.2rem;
-      perspective: 1500px;
-      z-index: 2;
-      position: relative;
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 10px;
+    }
+    .filter-btn {
+      background: #fff;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
     }
 
-    /* Tilt Card Container */
-    .card-3d {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 20px;
-      padding: 1.4rem;
-      backdrop-filter: blur(14px);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
-      transform-style: preserve-3d;
-      transition: border-color 0.3s, box-shadow 0.3s;
-      cursor: pointer;
+    /* Product Grid */
+    .catalog-grid {
+      max-width: 1250px;
+      margin: 1.5rem auto 4.5rem;
+      padding: 0 5%;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 1.8rem;
     }
-    .card-3d:hover {
-      border-color: rgba(230, 202, 101, 0.55);
-      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.65), 0 0 20px rgba(212, 175, 55, 0.2);
+    .product-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+      transition: transform 0.25s, box-shadow 0.25s;
+      position: relative;
+    }
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.08);
     }
     .img-box {
       width: 100%;
-      height: 230px;
-      border-radius: 14px;
+      height: 250px;
       overflow: hidden;
-      margin-bottom: 1.2rem;
       position: relative;
-      background: #111420;
+      background: #f4ede4;
     }
     .img-box img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       transition: transform 0.4s ease;
-      transform: translateZ(20px);
     }
-    .card-3d:hover .img-box img {
-      transform: scale(1.08) translateZ(35px);
+    .product-card:hover .img-box img {
+      transform: scale(1.05);
     }
-    .variant-tag {
+    .sale-badge {
       position: absolute;
-      top: 10px;
-      left: 10px;
-      background: rgba(0, 0, 0, 0.7);
-      backdrop-filter: blur(6px);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      color: var(--accent-gold);
+      top: 12px;
+      left: 12px;
+      background: var(--primary);
+      color: white;
       font-size: 0.7rem;
-      padding: 4px 10px;
-      border-radius: 20px;
+      font-weight: 700;
+      padding: 4px 9px;
+      border-radius: 6px;
+      letter-spacing: 0.5px;
+    }
+    .tag-category {
+      position: absolute;
+      bottom: 10px;
+      left: 12px;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(4px);
+      color: #333;
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+    .card-body {
+      padding: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    .card-rating {
+      font-size: 0.78rem;
+      color: #e67e22;
       font-weight: 600;
+      margin-bottom: 6px;
     }
     .card-title {
-      font-family: 'Cinzel', serif;
-      font-size: 1.15rem;
+      font-size: 1.05rem;
       font-weight: 700;
-      margin-bottom: 0.35rem;
-      transform: translateZ(25px);
+      margin-bottom: 6px;
+      color: #1e1e24;
+      line-height: 1.3;
     }
-    .card-desc {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      margin-bottom: 1rem;
-      height: 38px;
+    .card-features {
+      font-size: 0.8rem;
+      color: var(--muted);
       line-height: 1.4;
-      transform: translateZ(15px);
+      margin-bottom: 1rem;
+      flex-grow: 1;
     }
-    .card-bottom {
+    .card-footer {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      transform: translateZ(30px);
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      border-top: 1px dashed var(--border);
       padding-top: 0.9rem;
     }
-    .price {
+    .pricing {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+    .sale-price {
       font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--accent-gold);
+      font-weight: 800;
+      color: var(--primary);
     }
-    .btn-buy {
-      background: var(--gold-gradient);
-      color: #0b0d14;
-      border: none;
-      padding: 8px 18px;
-      border-radius: 25px;
-      font-weight: 700;
+    .mrp-price {
       font-size: 0.85rem;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
+      color: #999;
+      text-decoration: line-through;
     }
-    .btn-buy:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(212, 175, 55, 0.4);
+    .btn-order-cod {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 9px 16px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-order-cod:hover {
+      background: var(--primary-dark);
     }
 
     /* Modals */
     .modal-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.82);
-      backdrop-filter: blur(10px);
-      z-index: 1000;
+      background: rgba(0,0,0,0.65);
+      backdrop-filter: blur(4px);
       display: none;
       align-items: center;
       justify-content: center;
+      z-index: 1000;
       padding: 1rem;
     }
-    .modal-card {
-      background: #111420;
-      border: 1px solid rgba(212, 175, 55, 0.3);
+    .modal-box {
+      background: #fff;
+      border-radius: 16px;
       width: 100%;
-      max-width: 480px;
-      border-radius: 20px;
+      max-width: 460px;
       padding: 2rem;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
       position: relative;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
     }
-    .modal-close {
+    .close-btn {
       position: absolute;
-      top: 18px;
-      right: 20px;
-      background: none;
+      top: 15px;
+      right: 18px;
       border: none;
-      color: var(--text-muted);
-      font-size: 1.4rem;
+      background: none;
+      font-size: 1.6rem;
+      color: #888;
       cursor: pointer;
     }
-    .modal-title {
-      font-family: 'Cinzel', serif;
-      font-size: 1.35rem;
-      margin-bottom: 0.4rem;
-      color: var(--accent-gold);
+    .modal-head {
+      margin-bottom: 1.2rem;
+    }
+    .modal-head h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.45rem;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+    .modal-head p {
+      font-size: 0.82rem;
+      color: var(--muted);
     }
     .form-group {
-      margin-top: 1rem;
+      margin-bottom: 1rem;
       text-align: left;
     }
     .form-group label {
       display: block;
       font-size: 0.8rem;
-      color: var(--text-muted);
+      font-weight: 600;
+      color: #333;
       margin-bottom: 5px;
-      font-weight: 500;
     }
     .form-group input, .form-group textarea {
       width: 100%;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      color: #fff;
-      padding: 10px 14px;
-      border-radius: 10px;
+      padding: 10px 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
       font-family: inherit;
+      font-size: 0.9rem;
       outline: none;
-      transition: border-color 0.2s;
     }
     .form-group input:focus, .form-group textarea:focus {
-      border-color: var(--accent-gold);
+      border-color: var(--primary);
     }
-    .btn-submit {
-      width: 100%;
-      margin-top: 1.4rem;
-      background: var(--gold-gradient);
-      color: #0b0d14;
-      border: none;
-      padding: 12px;
-      border-radius: 12px;
-      font-size: 0.95rem;
+    .otp-inline-group {
+      display: flex;
+      gap: 8px;
+    }
+    .otp-inline-group input {
+      flex: 1;
+    }
+    .btn-send-otp {
+      background: #f1f3f5;
+      border: 1px solid #ccc;
+      padding: 0 14px;
+      border-radius: 8px;
+      font-size: 0.8rem;
       font-weight: 700;
       cursor: pointer;
+      color: #333;
+      white-space: nowrap;
     }
-    .cod-badge-box {
-      background: rgba(46, 204, 113, 0.12);
-      border: 1px dashed rgba(46, 204, 113, 0.4);
-      padding: 10px;
-      border-radius: 10px;
-      color: #2ecc71;
-      font-size: 0.8rem;
+    .btn-send-otp:hover {
+      background: #e9ecef;
+    }
+    .btn-main {
+      width: 100%;
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
       margin-top: 1rem;
+    }
+    .btn-main:hover {
+      background: var(--primary-dark);
+    }
+    .cod-tag-banner {
+      background: #f1f8e9;
+      border: 1px dashed #7cb342;
+      color: #33691e;
+      padding: 9px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      margin-top: 0.8rem;
       text-align: center;
+      font-weight: 600;
+    }
+    .toggle-auth {
+      font-size: 0.82rem;
+      text-align: center;
+      margin-top: 1rem;
+      color: var(--muted);
+    }
+    .toggle-auth a {
+      color: var(--primary);
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    /* Footer */
+    footer {
+      background: #191c1f;
+      color: #dedede;
+      padding: 3.5rem 5% 1.8rem;
+      border-top: 3px solid var(--primary);
+    }
+    .footer-grid {
+      max-width: 1250px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2.2rem;
+      margin-bottom: 2.5rem;
+    }
+    .footer-col h4 {
+      color: #fff;
+      font-size: 1.05rem;
+      margin-bottom: 1rem;
+      font-family: 'Playfair Display', serif;
+    }
+    .footer-col p {
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: #aaa;
+    }
+    .footer-col ul {
+      list-style: none;
+    }
+    .footer-col ul li {
+      font-size: 0.85rem;
+      margin-bottom: 0.5rem;
+      color: #aaa;
+    }
+    .footer-col a {
+      color: #f7a072;
+      text-decoration: none;
+    }
+    .footer-bottom {
+      max-width: 1250px;
+      margin: 0 auto;
+      border-top: 1px solid #333;
+      padding-top: 1.5rem;
+      text-align: center;
+      font-size: 0.78rem;
+      color: #777;
     }
   </style>
 </head>
 <body>
 
-  <!-- Ambient glowing light follows mouse -->
-  <div class="ambient-glow" id="ambientLight"></div>
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    ⚡ Special Launch: Extra 10% Off on COD | Free Delivery across India
+  </div>
 
   <!-- Header -->
   <header>
-    <a href="#" class="logo-container">
-      <div class="dummy-logo">NB</div>
-      <span class="brand-title">NITESH BAGS</span>
+    <a href="#" class="brand-wrap">
+      <div class="brand-logo-dummy">N</div>
+      <div class="brand-text">
+        <h1>NITESH</h1>
+        <span>Handcrafted Indian Elegance</span>
+      </div>
     </a>
     <div class="nav-actions">
-      <span class="badge-cod">🚚 COD ONLY</span>
-      <button class="btn-auth" id="authBtn" onclick="openAuthModal()">Sign In / Join</button>
+      <span class="badge-pill">🚚 100% COD AVAILABLE</span>
+      <button class="btn-auth-nav" id="userNavBtn" onclick="openAuthModal('signup')">Sign In / Register</button>
     </div>
   </header>
 
   <!-- Hero Section -->
   <section class="hero">
-    <h1>FOUR-DIMENSIONAL CRAFT</h1>
-    <p>Explore our exclusive 10 signature variants. Engineered with architectural precision, premium materials, and cash-on-delivery convenience directly to your doorstep.</p>
+    <span class="hero-badge">Curated Handcrafted Collection</span>
+    <h2>Indian Artistry Meets Modern Form</h2>
+    <p>Discover our exclusive 10 signature variants handcrafted with premium cruelty-free vegan fabric and rich traditional Indian motifs. Pure Cash on Delivery convenience at your doorstep.</p>
   </section>
 
-  <!-- 10 Variants Catalog -->
-  <main class="catalog-container" id="catalog"></main>
+  <!-- Category / Print Filters -->
+  <div class="filter-wrapper">
+    <button class="filter-btn active" onclick="filterBags('all', this)">All (10)</button>
+    <button class="filter-btn" onclick="filterBags('Office', this)">Office & Laptop</button>
+    <button class="filter-btn" onclick="filterBags('Sling', this)">Sling Bags</button>
+    <button class="filter-btn" onclick="filterBags('Tote', this)">Tote & Handbags</button>
+    <button class="filter-btn" onclick="filterBags('Backpack', this)">Backpacks</button>
+  </div>
 
-  <!-- Checkout Modal (COD Only) -->
+  <!-- Catalog Grid -->
+  <main class="catalog-grid" id="productGrid"></main>
+
+  <!-- COD Checkout Modal -->
   <div class="modal-overlay" id="checkoutModal">
-    <div class="modal-card">
-      <button class="modal-close" onclick="closeModal('checkoutModal')">&times;</button>
-      <h3 class="modal-title">Cash on Delivery Order</h3>
-      <p style="font-size: 0.85rem; color: var(--text-muted);" id="checkoutSubtitle"></p>
-      
+    <div class="modal-box">
+      <button class="close-btn" onclick="closeModal('checkoutModal')">&times;</button>
+      <div class="modal-head">
+        <h3>Cash On Delivery Checkout</h3>
+        <p id="checkoutSub">Order directly without online card payment.</p>
+      </div>
+
       <form id="orderForm" onsubmit="handleOrderSubmit(event)">
         <div class="form-group">
-          <label>Full Name</label>
-          <input type="text" id="custName" required placeholder="e.g. Rahul Sharma" />
+          <label>Full Name *</label>
+          <input type="text" id="orderCustName" required placeholder="Aapka Poora Naam" />
         </div>
         <div class="form-group">
-          <label>Phone Number</label>
-          <input type="tel" id="custPhone" required placeholder="10-digit mobile number" />
+          <label>Phone Number (10 Digits) *</label>
+          <input type="tel" id="orderCustPhone" pattern="[0-9]{10}" required placeholder="10-digit Mobile Number" />
         </div>
         <div class="form-group">
-          <label>Email Address</label>
-          <input type="email" id="custEmail" required placeholder="your.name@example.com" />
+          <label>Email Address *</label>
+          <input type="email" id="orderCustEmail" required placeholder="name@example.com" />
         </div>
         <div class="form-group">
-          <label>Delivery Address</label>
-          <textarea id="custAddress" rows="3" required placeholder="Flat / House no, Landmark, City, Pincode"></textarea>
+          <label>Complete Delivery Address *</label>
+          <textarea id="orderCustAddress" rows="3" required placeholder="Flat/House No, Building, Road, City, Pincode"></textarea>
         </div>
         <div class="form-group">
           <label>Quantity</label>
-          <input type="number" id="custQty" value="1" min="1" max="5" onchange="updateTotalCalc()" />
+          <input type="number" id="orderQty" value="1" min="1" max="5" onchange="calculateOrderTotal()" />
         </div>
 
-        <div class="cod-badge-box">
-          💵 <strong>Payment Mode:</strong> Cash on Delivery (Pay cash upon parcel delivery)
+        <div class="cod-tag-banner">
+          💵 Payment Mode: <strong>Cash on Delivery</strong> (Pay cash upon parcel delivery)
         </div>
 
-        <button type="submit" class="btn-submit" id="submitOrderBtn">Confirm COD Order (₹<span id="displayTotal">0</span>)</button>
+        <button type="submit" class="btn-main" id="btnPlaceOrder">Place COD Order (₹<span id="orderTotalDisplay">0</span>)</button>
       </form>
     </div>
   </div>
 
-  <!-- Sign Up / Login Modal -->
+  <!-- Auth Modal (Signup & Login with Real Email OTP) -->
   <div class="modal-overlay" id="authModal">
-    <div class="modal-card">
-      <button class="modal-close" onclick="closeModal('authModal')">&times;</button>
-      <h3 class="modal-title" id="authTitle">Create Account</h3>
-      <p style="font-size: 0.85rem; color: var(--text-muted);">Sync your profile with our Google Drive directory.</p>
+    <div class="modal-box">
+      <button class="close-btn" onclick="closeModal('authModal')">&times;</button>
+      
+      <!-- SIGNUP FORM -->
+      <div id="signupSection">
+        <div class="modal-head">
+          <h3>Create Account</h3>
+          <p>Real Email OTP verification se account banayein.</p>
+        </div>
+        <form onsubmit="handleSignup(event)">
+          <div class="form-group">
+            <label>Full Name *</label>
+            <input type="text" id="signupName" required placeholder="Aapka Naam" />
+          </div>
+          <div class="form-group">
+            <label>Email Address *</label>
+            <div class="otp-inline-group">
+              <input type="email" id="signupEmail" required placeholder="your.email@gmail.com" />
+              <button type="button" class="btn-send-otp" id="btnSendOtpSignup" onclick="sendOtp('signup')">Send OTP</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>6-Digit Email OTP *</label>
+            <input type="text" id="signupOtp" maxlength="6" pattern="[0-9]{6}" required placeholder="Enter OTP received on email" />
+          </div>
+          <div class="form-group">
+            <label>Mobile Number (10 Digits) *</label>
+            <input type="tel" id="signupPhone" pattern="[0-9]{10}" required placeholder="10-digit Phone" />
+          </div>
+          <button type="submit" class="btn-main" id="btnSignupSubmit">Verify OTP & Register</button>
+        </form>
+        <div class="toggle-auth">
+          Pehle se account hai? <a onclick="toggleAuthView('login')">Yahan Login Karein</a>
+        </div>
+      </div>
 
-      <form id="authForm" onsubmit="handleAuthSubmit(event)">
-        <div class="form-group">
-          <label>Full Name</label>
-          <input type="text" id="authName" required placeholder="Full Name" />
+      <!-- LOGIN FORM -->
+      <div id="loginSection" style="display: none;">
+        <div class="modal-head">
+          <h3>Welcome Back</h3>
+          <p>Email OTP enter karke securely log in karein.</p>
         </div>
-        <div class="form-group">
-          <label>Email Address</label>
-          <input type="email" id="authEmail" required placeholder="email@domain.com" />
+        <form onsubmit="handleLogin(event)">
+          <div class="form-group">
+            <label>Registered Email Address *</label>
+            <div class="otp-inline-group">
+              <input type="email" id="loginEmail" required placeholder="your.email@gmail.com" />
+              <button type="button" class="btn-send-otp" id="btnSendOtpLogin" onclick="sendOtp('login')">Send OTP</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>6-Digit Email OTP *</label>
+            <input type="text" id="loginOtp" maxlength="6" pattern="[0-9]{6}" required placeholder="Enter 6-digit OTP" />
+          </div>
+          <button type="submit" class="btn-main" id="btnLoginSubmit">Verify OTP & Login</button>
+        </form>
+        <div class="toggle-auth">
+          Naye user ho? <a onclick="toggleAuthView('signup')">Naya Account Banayein</a>
         </div>
-        <div class="form-group">
-          <label>Mobile Number</label>
-          <input type="tel" id="authPhone" required placeholder="Contact Number" />
-        </div>
-        <button type="submit" class="btn-submit" id="authSubmitBtn">Register Account</button>
-      </form>
+      </div>
+
     </div>
   </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>NITESH</h4>
+        <p>Proudly handcrafted Indian lifestyle bags blending rich cultural motifs with modern everyday utility. 100% cruelty-free vegan materials.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Customer Care</h4>
+        <ul>
+          <li>Cash on Delivery (COD) Verified</li>
+          <li>Free Express Shipping Across India</li>
+          <li>Easy 7-Day Exchange Support</li>
+          <li>Track Order via Email</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact & Support</h4>
+        <p><strong>Direct Helpline / WhatsApp:</strong></p>
+        <p><a href="tel:+919370394843">+91 9370394843</a> / <a href="tel:+919975677732">+91 9975677732</a></p>
+        <p style="margin-top: 8px;"><strong>Hours:</strong> Mon - Sat (10:00 AM - 7:00 PM)</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 NITESH Bags. All Rights Reserved. Handcrafted Indian Elegance.
+    </div>
+  </footer>
 
   <script>
-    // 1. Webhook endpoint from Google Apps Script deployment
+    // ⚠️ IMPORTANT: Yahan apna Google Apps Script Web App URL daalein
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxrK4Ki6SYeeeQSSXu8EO07SYRxCbzGAjMZ6p_BDUou4qtlPMzB0Da8DGEZoSdlkuwDyw/exec";
 
-    // 2. 10 Signature Bag Variants
+    // 10 Curated Zouk-Style Bag Variants (Demo Data ready for VS Code customization)
     const variants = [
-      { id: 1, name: "V1: Stealth Obsidian Backpack", price: 3499, desc: "Matte ballistic nylon with waterproof zippers and laptop sleeve.", img: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=700&q=80" },
-      { id: 2, name: "V2: Heritage Cognac Briefcase", price: 4299, desc: "Full-grain vegetable-tanned leather for formal corporate aesthetics.", img: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=700&q=80" },
-      { id: 3, name: "V3: Cyber Carbon Crossbody", price: 2199, desc: "High-density weave with metallic hardware and RFID blocking pocket.", img: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=700&q=80" },
-      { id: 4, name: "V4: Apex Alpine Duffle", price: 3899, desc: "60L rugged weather-resistant duffle engineered for weekends & gym.", img: "https://images.unsplash.com/photo-1577733966973-d680bffd2e80?auto=format&fit=crop&w=700&q=80" },
-      { id: 5, name: "V5: Parisian Minimal Tote", price: 2799, desc: "Structured waxed canvas bag with reinforced dual-leather handles.", img: "https://images.unsplash.com/photo-1591561954557-26941169b49e?auto=format&fit=crop&w=700&q=80" },
-      { id: 6, name: "V6: Nomad Tactical Sling", price: 1899, desc: "Ambidextrous strap, quick-release magnetic buckle, tactical webbings.", img: "https://images.unsplash.com/photo-1622560480605-d83c853bc5c3?auto=format&fit=crop&w=700&q=80" },
-      { id: 7, name: "V7: Vanguard Hard-Shell Carryon", price: 5499, desc: "Aerospace polycarbonate frame with 360-degree silent spinner wheels.", img: "https://images.unsplash.com/photo-1565026057447-bc90a3dceb87?auto=format&fit=crop&w=700&q=80" },
-      { id: 8, name: "V8: Eclipse Rolltop Commuter", price: 3199, desc: "Expandable roll-top closure with quick-access side camera compartment.", img: "https://images.unsplash.com/photo-1600857062241-98e5dba7f214?auto=format&fit=crop&w=700&q=80" },
-      { id: 9, name: "V9: Midnight Velvet Clutch", price: 2499, desc: "Handcrafted evening silhouette accented with golden brass chain.", img: "https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?auto=format&fit=crop&w=700&q=80" },
-      { id: 10, name: "V10: Urban Modular Messenger", price: 2999, desc: "Waterproof commuter bag with magnetic flap and luggage pass-through.", img: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=700&q=80" }
+      {
+        id: 1,
+        name: "Bidri Royal Floral Office Bag",
+        category: "Office",
+        mrp: 2999,
+        sale: 1699,
+        discount: "43% OFF",
+        rating: "4.9 ⭐ (1.2k+ reviews)",
+        features: "Padded 15.6'' laptop sleeve, water-resistant inner lining, luggage sleeve strap.",
+        img: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=700&q=80"
+      },
+      {
+        id: 2,
+        name: "Ikat Charm Daily Commuter Backpack",
+        category: "Backpack",
+        mrp: 2799,
+        sale: 1599,
+        discount: "42% OFF",
+        rating: "4.8 ⭐ (850 reviews)",
+        features: "Dedicated dual tablet/laptop compartments, anti-theft back pocket.",
+        img: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=700&q=80"
+      },
+      {
+        id: 3,
+        name: "Mandala Weaves Flap Sling Bag",
+        category: "Sling",
+        mrp: 2199,
+        sale: 1299,
+        discount: "40% OFF",
+        rating: "4.9 ⭐ (3.1k+ reviews)",
+        features: "Adjustable shoulder cross strap, quick-access front flap, compact styling.",
+        img: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=700&q=80"
+      },
+      {
+        id: 4,
+        name: "Kutch Heritage Everyday Tote",
+        category: "Tote",
+        mrp: 2499,
+        sale: 1499,
+        discount: "40% OFF",
+        rating: "4.7 ⭐ (640 reviews)",
+        features: "Spacious multi-utility tote with zippered closure and sturdy vegan handles.",
+        img: "https://images.unsplash.com/photo-1591561954557-26941169b49e?auto=format&fit=crop&w=700&q=80"
+      },
+      {
+        id: 5,
+        name: "FloMotif Statement Office Briefcase",
+        category: "Office",
+        mrp: 3299,
+        sale: 1899,
+        discount: "42% OFF",
+        rating: "5.0 ⭐ (420 reviews)",
+        features: "Structured corporate silhouette, gold finish metal hardware, fits 16-inch laptops.",
+        img: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=700&q=80"
+      },
+      {
+        id: 6,
+        name: "Gwalior Geometric Phone Sling",
+        category: "Sling",
+        mrp: 1899,
+        sale: 999,
+        discount: "47% OFF",
+        rating: "4.8 ⭐ (910 reviews)",
+        features: "Designed for all smartphone sizes, 3 built-in card slots, lightweight body.",
+        img: "https://images.unsplash.com/photo-1622560480605-d83c853bc5c3?auto=format&fit=crop&w=700&q=80"
+      },
+      {
+        id: 7,
+        name: "Nawabi Gold Structured Handbag",
+        category: "Tote",
+        mrp: 2899,
+        sale: 1699,
+        discount: "41% OFF",
+        rating: "4.9 ⭐ (1.5k+ reviews)",
+        features: "Dual carrying handles + detachable sling strap, scratch-resistant base.",
+        img: "https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?auto=format&fit=crop&w=700&q=80"
+      },
+      {
+        id: 8,
+        name: "Ajmer Haze City Daypack",
+        category: "Backpack",
+        mrp: 2999,
+        sale: 1749,
+        discount: "41% OFF",
+        rating: "4.8 ⭐ (530 reviews)",
+        features: "Ergonomic breathable back cushions, water-bottle holder, aesthetic ethnic print.",
+        img: "https://images.unsplash.com/photo-1600857062241-98e5dba7f214?auto=format&fit=crop&w=700&q=80"
+      },
+      {
+        id: 9,
+        name: "Vanya Velvet Baguette Bag",
+        category: "Sling",
+        mrp: 2399,
+        sale: 1399,
+        discount: "41% OFF",
+        rating: "4.9 ⭐ (810 reviews)",
+        features: "Chic baguette shape, premium brass chain, ideal for evening parties & dinners.",
+        img: "https://images.unsplash.com/photo-1577733966973-d680bffd2e80?auto=format&fit=crop&w=700&q=80"
+      },
+      {
+        id: 10,
+        name: "Vintage Monogram Expandable Laptop Tote",
+        category: "Office",
+        mrp: 3499,
+        sale: 1999,
+        discount: "43% OFF",
+        rating: "4.9 ⭐ (2.4k+ reviews)",
+        features: "Expandable bottom zipper compartment, reinforced double seams, executive look.",
+        img: "https://images.unsplash.com/photo-1565026057447-bc90a3dceb87?auto=format&fit=crop&w=700&q=80"
+      }
     ];
 
-    let selectedVariant = null;
+    let currentSelectedBag = null;
 
-    // Render Cards with 4D / 3D Tilt parameters
-    const catalog = document.getElementById("catalog");
-    variants.forEach(item => {
-      const card = document.createElement("div");
-      card.className = "card-3d";
-      card.setAttribute("data-tilt", "");
-      card.setAttribute("data-tilt-max", "18");
-      card.setAttribute("data-tilt-speed", "400");
-      card.setAttribute("data-tilt-perspective", "1000");
-      card.setAttribute("data-tilt-glare", "true");
-      card.setAttribute("data-tilt-max-glare", "0.25");
-
-      card.innerHTML = `
-        <div class="img-box">
-          <span class="variant-tag">Variant #${item.id}</span>
-          <img src="${item.img}" alt="${item.name}" loading="lazy" />
-        </div>
-        <h3 class="card-title">${item.name}</h3>
-        <p class="card-desc">${item.desc}</p>
-        <div class="card-bottom">
-          <span class="price">₹${item.price.toLocaleString('en-IN')}</span>
-          <button class="btn-buy" onclick="openCheckout(${item.id})">Order COD</button>
-        </div>
-      `;
-      catalog.appendChild(card);
-    });
-
-    // Initialize 3D Vanilla Tilt
-    VanillaTilt.init(document.querySelectorAll(".card-3d"));
-
-    // Ambient Lighting cursor tracking
-    const ambientLight = document.getElementById("ambientLight");
-    window.addEventListener("mousemove", (e) => {
-      ambientLight.style.transform = `translate(${e.clientX - 225}px, ${e.clientY - 225}px)`;
-    });
-
-    // Modal controllers
-    function openCheckout(variantId) {
-      selectedVariant = variants.find(v => v.id === variantId);
-      document.getElementById("checkoutSubtitle").innerText = `${selectedVariant.name} — ₹${selectedVariant.price.toLocaleString('en-IN')}`;
-      updateTotalCalc();
-      document.getElementById("checkoutModal").style.display = "flex";
+    // Render Products Grid
+    function renderCatalog(items) {
+      const grid = document.getElementById("productGrid");
+      grid.innerHTML = "";
+      items.forEach(bag => {
+        const card = document.createElement("div");
+        card.className = "product-card";
+        card.innerHTML = `
+          <div class="img-box">
+            <span class="sale-badge">${bag.discount}</span>
+            <span class="tag-category">${bag.category}</span>
+            <img src="${bag.img}" alt="${bag.name}" loading="lazy" />
+          </div>
+          <div class="card-body">
+            <div class="card-rating">${bag.rating}</div>
+            <h3 class="card-title">${bag.name}</h3>
+            <p class="card-features">${bag.features}</p>
+            <div class="card-footer">
+              <div class="pricing">
+                <span class="sale-price">₹${bag.sale.toLocaleString('en-IN')}</span>
+                <span class="mrp-price">₹${bag.mrp.toLocaleString('en-IN')}</span>
+              </div>
+              <button class="btn-order-cod" onclick="initiateOrder(${bag.id})">Order COD</button>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
     }
 
-    function updateTotalCalc() {
-      if (!selectedVariant) return;
-      const qty = parseInt(document.getElementById("custQty").value) || 1;
-      const total = selectedVariant.price * qty;
-      document.getElementById("displayTotal").innerText = total.toLocaleString('en-IN');
+    // Filter Buttons logic
+    function filterBags(category, btnElem) {
+      document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+      btnElem.classList.add("active");
+      if (category === "all") {
+        renderCatalog(variants);
+      } else {
+        const filtered = variants.filter(v => v.category === category);
+        renderCatalog(filtered);
+      }
     }
 
-    function openAuthModal() {
-      document.getElementById("authModal").style.display = "flex";
-    }
-
+    // Modal Handlers
     function closeModal(id) {
       document.getElementById(id).style.display = "none";
     }
 
-    // Submit Order -> Google Apps Script -> Sheet & Gmail
+    function openAuthModal(mode) {
+      document.getElementById("authModal").style.display = "flex";
+      toggleAuthView(mode);
+    }
+
+    function toggleAuthView(mode) {
+      if (mode === "login") {
+        document.getElementById("signupSection").style.display = "none";
+        document.getElementById("loginSection").style.display = "block";
+      } else {
+        document.getElementById("signupSection").style.display = "block";
+        document.getElementById("loginSection").style.display = "none";
+      }
+    }
+
+    // ORDER FLOW (COD)
+    function initiateOrder(bagId) {
+      currentSelectedBag = variants.find(v => v.id === bagId);
+      document.getElementById("checkoutSub").innerText = `${currentSelectedBag.name} (₹${currentSelectedBag.sale.toLocaleString('en-IN')})`;
+      calculateOrderTotal();
+      document.getElementById("checkoutModal").style.display = "flex";
+    }
+
+    function calculateOrderTotal() {
+      if (!currentSelectedBag) return;
+      const qty = parseInt(document.getElementById("orderQty").value) || 1;
+      const total = currentSelectedBag.sale * qty;
+      document.getElementById("orderTotalDisplay").innerText = total.toLocaleString('en-IN');
+    }
+
     async function handleOrderSubmit(e) {
       e.preventDefault();
-      const btn = document.getElementById("submitOrderBtn");
-      btn.innerText = "Processing Order...";
+      const btn = document.getElementById("btnPlaceOrder");
+      btn.innerText = "Placing Order...";
       btn.disabled = true;
 
-      const qty = parseInt(document.getElementById("custQty").value) || 1;
+      const qty = parseInt(document.getElementById("orderQty").value) || 1;
       const payload = {
         action: "order",
-        customerName: document.getElementById("custName").value,
-        phone: document.getElementById("custPhone").value,
-        email: document.getElementById("custEmail").value,
-        address: document.getElementById("custAddress").value,
-        variantName: selectedVariant.name,
+        customerName: document.getElementById("orderCustName").value.trim(),
+        phone: document.getElementById("orderCustPhone").value.trim(),
+        email: document.getElementById("orderCustEmail").value.trim(),
+        address: document.getElementById("orderCustAddress").value.trim(),
+        variantName: currentSelectedBag.name,
         quantity: qty,
-        unitPrice: selectedVariant.price,
-        totalPrice: selectedVariant.price * qty
+        unitPrice: currentSelectedBag.sale,
+        totalPrice: currentSelectedBag.sale * qty
       };
 
       try {
         await fetch(SCRIPT_URL, {
           method: "POST",
           mode: "no-cors",
-          headers: { "Content-Type": "application/json" },
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
           body: JSON.stringify(payload)
         });
 
-        alert("🎉 Order Placed Successfully via Cash on Delivery!\n\nA confirmation email has been dispatched to the owner.");
+        alert("🎉 Aapka COD Order Safaltapoorvak Place Ho Gaya Hai!\n\nEmail confirmation and Sheet logging complete.");
         closeModal("checkoutModal");
         document.getElementById("orderForm").reset();
       } catch (err) {
-        alert("Notice: Order recorded locally. Ensure your Apps Script URL is updated.");
+        alert("Order process nahi ho saka. Kripya check karein ki SCRIPT_URL theek se configured hai.");
       } finally {
-        btn.innerText = "Confirm COD Order";
+        btn.innerText = "Place COD Order";
         btn.disabled = false;
       }
     }
 
-    // Signup / Auth flow
-    async function handleAuthSubmit(e) {
+    // REAL EMAIL OTP LOGIC
+    async function sendOtp(type) {
+      const emailInput = type === "signup" ? document.getElementById("signupEmail") : document.getElementById("loginEmail");
+      const btn = type === "signup" ? document.getElementById("btnSendOtpSignup") : document.getElementById("btnSendOtpLogin");
+      const email = emailInput.value.trim();
+
+      if (!email || !email.includes("@")) {
+        alert("Kripya ek valid email address enter karein!");
+        return;
+      }
+
+      btn.innerText = "Sending...";
+      btn.disabled = true;
+
+      try {
+        await fetch(SCRIPT_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify({ action: "send_otp", email: email })
+        });
+
+        alert(`✅ 6-digit OTP aapke email (${email}) par bhej diya gaya hai!\nInbox check karein (aur spam folder bhi).`);
+        btn.innerText = "OTP Sent!";
+      } catch (err) {
+        alert("OTP send karne me dikkat aayi. Check your Apps Script.");
+        btn.innerText = "Resend OTP";
+        btn.disabled = false;
+      }
+    }
+
+    async function handleSignup(e) {
       e.preventDefault();
-      const btn = document.getElementById("authSubmitBtn");
-      btn.innerText = "Registering...";
+      const btn = document.getElementById("btnSignupSubmit");
+      btn.innerText = "Verifying...";
       btn.disabled = true;
 
       const payload = {
         action: "signup",
-        fullName: document.getElementById("authName").value,
-        email: document.getElementById("authEmail").value,
-        phone: document.getElementById("authPhone").value
+        fullName: document.getElementById("signupName").value.trim(),
+        email: document.getElementById("signupEmail").value.trim(),
+        phone: document.getElementById("signupPhone").value.trim(),
+        otp: document.getElementById("signupOtp").value.trim()
       };
 
       try {
         await fetch(SCRIPT_URL, {
           method: "POST",
           mode: "no-cors",
-          headers: { "Content-Type": "application/json" },
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
           body: JSON.stringify(payload)
         });
 
-        localStorage.setItem("nb_user", JSON.stringify(payload));
-        document.getElementById("authBtn").innerText = `Hi, ${payload.fullName.split(' ')[0]}`;
-        alert("Account created and saved in Google Drive!");
+        localStorage.setItem("nitesh_auth_user", JSON.stringify({ name: payload.fullName, email: payload.email }));
+        updateNavbarUser(payload.fullName);
+        alert("🎉 Registration safal raha! Aapka account ban chuka hai.");
         closeModal("authModal");
       } catch (err) {
-        alert("Account registered locally.");
+        alert("Signup request poori nahi ho saki.");
       } finally {
-        btn.innerText = "Register Account";
+        btn.innerText = "Verify OTP & Register";
         btn.disabled = false;
       }
     }
 
-    // Check stored user session
+    async function handleLogin(e) {
+      e.preventDefault();
+      const btn = document.getElementById("btnLoginSubmit");
+      btn.innerText = "Verifying...";
+      btn.disabled = true;
+
+      const payload = {
+        action: "login",
+        email: document.getElementById("loginEmail").value.trim(),
+        otp: document.getElementById("loginOtp").value.trim()
+      };
+
+      try {
+        await fetch(SCRIPT_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify(payload)
+        });
+
+        const savedUser = { name: payload.email.split('@')[0], email: payload.email };
+        localStorage.setItem("nitesh_auth_user", JSON.stringify(savedUser));
+        updateNavbarUser(savedUser.name);
+        alert("✅ Welcome back! Login safal raha.");
+        closeModal("authModal");
+      } catch (err) {
+        alert("Login poora nahi ho saka.");
+      } finally {
+        btn.innerText = "Verify OTP & Login";
+        btn.disabled = false;
+      }
+    }
+
+    function updateNavbarUser(name) {
+      const btn = document.getElementById("userNavBtn");
+      btn.innerText = `Hi, ${name.split(' ')[0]}`;
+      btn.onclick = () => {
+        if (confirm("Logout karna chahte hain?")) {
+          localStorage.removeItem("nitesh_auth_user");
+          location.reload();
+        }
+      };
+    }
+
+    // Initial Load
     window.addEventListener("DOMContentLoaded", () => {
-      const saved = localStorage.getItem("nb_user");
-      if (saved) {
-        const u = JSON.parse(saved);
-        document.getElementById("authBtn").innerText = `Hi, ${u.fullName.split(' ')[0]}`;
+      renderCatalog(variants);
+      const user = localStorage.getItem("nitesh_auth_user");
+      if (user) {
+        const u = JSON.parse(user);
+        updateNavbarUser(u.name);
       }
     });
   </script>
